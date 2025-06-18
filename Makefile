@@ -25,10 +25,10 @@ test-api:
 
 test-e2e:
 	-docker network create calc-test-e2e
-	docker stop apiserver || true
-	docker rm --force apiserver || true
-	docker stop calc-web || true
-	docker rm --force calc-web || true
+	-docker stop apiserver 
+	-docker rm --force apiserver
+	-docker stop calc-web
+	-docker rm --force calc-web
 	docker stop e2e-tests || true
 	docker rm --force e2e-tests || true
 	docker run -d --network calc-test-e2e --env PYTHONPATH=/opt/calc --name apiserver --env FLASK_APP=app/api.py -p 5000:5000 -w /opt/calc calculator-app:latest flask run --host=0.0.0.0
